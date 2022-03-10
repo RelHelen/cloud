@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		html,
+body,
+.container,
+.main,
+.panel {
+  min-height: 100vh;
+}
+html {
+  font-size: 16px;
+}
+body {
+  font: 1rem 'Roboto-Regular', Arial, sans-serif;
+  background: #000;
+  color: #eee;
+}
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    width: 970px;
+  }
+}
+.cont_p {
+  padding: 1rem 0.8rem;
+}
+/*---------- nav ---------*/
+.nav-main {
+  display: flex;
+  align-items: center;
+}
+/*---------- logo ------ */
+.logo {
+  display: flex;
+  flex: 0 1 auto;
+  align-items: center;
+  margin-right: 40px;
+}
+.logo__img {
+  margin-right: 10px;
+  width: 45px;
+}
+@media (min-width: 768px) {
+  .logo__img {
+    width: 60px;
+  }
+}
+.logo__txt {
+  text-transform: uppercase;
+  color: #3CFFFF;
+  font: bold 0.9rem/26px 'RobotoCondensed', Arial, sans-serif;
+  font-style: normal;
+}
+@media (min-width: 768px) {
+  .logo__txt {
+    font: bold 1.1rem/28px 'RobotoCondensed', Arial, sans-serif;
+  }
+}
+/*---------- menu ------ */
+.menu {
+  display: flex;
+  position: relative;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: flex-end;
+}
+.menu__btn,#toggle-menu {
+  /*  кнопка */
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0px;
+  right: 20px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  z-index: 1000;
+}
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  /*  гамбургер */
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #eee;
+  transition: 0.2s linear;
+}
+.menu__btn > span::before {
+  content: '';
+  top: -8px;
+}
+.menu__btn > span::after {
+  content: '';
+  top: 8px;
+}
+.menu__box {
+  /* контейнер меню */
+  display: block;
+  position: fixed;
+  visibility: hidden;  right: -100%;
+  top: 0;
+ 
+  min-width: 300px;
+  height: 100%;
+  margin: 0;
+  padding: 80px 0;
+  list-style: none;
+  text-align: left;
+  background: #4f4c4c;
+  box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
+  transition: 0.5s linear;
+}
+.menu__item {
+  /* элементы меню */
+  display: block;
+  padding: 12px 24px;
+  color: #eee;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  font-weight: normal;
+  text-decoration: none;
+  transition: 0.5s linear;
+}
+.menu__item:hover {
+  background-color: #5f5b5b;
+  text-decoration: none;
+  color: #eee;
+}
+.menu #menu__toggle {
+  /* скрываем чекбокс */
+  opacity: 0;
+}
+.menu #menu__toggle:checked ~ .menu__btn > span {
+  /* ~ определяет указанные справа, которые следуют за элементом, указанным слева и имеют с ним общего родителя */
+  transform: rotate(45deg);
+}
+.menu #menu__toggle:checked ~ .menu__btn > span::before {
+  top: 0;
+  transform: rotate(0);
+}
+.menu #menu__toggle:checked ~ .menu__btn > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+.menu #menu__toggle:checked ~ .menu__box {
+  /* visibility: visible ;
+  right: 0 ; */  
+}
+ 
+ 
+ .hiddenMenu{
+  visibility: hidden ;
+  right: -100% ;
+}
+.visibleMenu{
+  visibility: visible;
+  right: 0;
+ }
+	</style>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+  <script type="text/javascript"> 
+  $(document).ready(function(){ 
+$('.menu__btn').on( "click", function( event ) {
+   $("ul.menu__box").removeClass('hiddenMenu');
+   $("ul.menu__box").toggleClass( "visibleMenu" ); 
+    
+})
+
+$('.menu__box>li>a').on( "click", function( event ) {
+    $("ul.menu__box").removeClass('visibleMenu');
+  $(event.target).closest( "ul.menu__box" ).toggleClass( "hiddenMenu" ); 
+   
+});
+})
+  </script>
+</head>
+<body>
+	<nav class="nav-main">
+				<div class="logo">
+					<a href="#">
+						<img class="logo__img" src="img/logo.png" alt="">
+					</a>
+					<a href="#">
+						<span class="logo__txt">cloud rental</span>
+					</a>
+				</div>				
+				<div class="menu">
+					<div class="menu-hamburger">
+						  <input id="menu__toggle" type="checkbox" />
+						  <label class="menu__btn" for="menu__toggle" >
+						    <span></span>
+						  </label>
+              
+						  <ul  class="menu__box" >
+						    <li >
+						    	<a class="menu__item" href="#">Главная</a>
+						    </li>
+						    <li >
+						    	<a class="menu__item" href="#">Главная</a></li>
+						    <li>
+						    	<a class="menu__item" href="#">Главная</a></li>
+						    <li>
+						    	<a class="menu__item" href="#">Главная</a></li>
+						    <li>
+						    	<a class="menu__item" href="#">Главная</a></li>
+						  </ul>
+					</div>
+				</div>
+			</nav>
+		
+<ul>
+  <li><b>Click me!</b></li>
+  <li>You can also <b>Click me!</b></li>
+</ul>
+</body>
+</html>
