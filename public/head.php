@@ -1,3 +1,6 @@
+<?php
+require_once '../config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +8,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Система оплаты ренты Сloud Rental</title> 
 
-	<link rel="stylesheet" href="css/reboot.css">
-	<link rel="stylesheet" href="css/bootstrap-grid.min.css">
-	<link rel="stylesheet" href="icons/style.css">
-	<link rel="stylesheet" href="css/style.css">
-	<script src="script/main.js" type="module"></script>
+	<link rel="stylesheet" href="<?php echo $dir;?>css/reboot.css">
+	<link rel="stylesheet" href="<?php echo $dir;?>css/bootstrap-grid.min.css">
+	<link rel="stylesheet" href="<?php echo $dir;?>icons/style.css">
+	<link rel="stylesheet" href="<?php echo $dir;?>css/style.css">
+	<script src="<?php echo $dir;?>script/main.js" type="module"></script>
 
 <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -23,7 +26,7 @@
 			<nav class="nav-main">
 				<div class="logo">
 					<a href="index.php">
-						<img class="logo__img" src="img/logo.png" alt="">
+						<img class="logo__img" src="<?php echo $dir;?>img/logo.png" alt="">
 					</a>
 					<a href="index.php">
 						<span class="logo__txt">cloud rental</span>

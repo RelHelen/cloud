@@ -1,4 +1,5 @@
-<?php include 'head.php'?>
-
-<?php include 'footer.php'?>
+<?php 
+header("Location:  public/index.php");
+exit;
+?>
 	

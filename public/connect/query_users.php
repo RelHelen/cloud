@@ -1,33 +1,41 @@
 <?php
-include 'constants.php';
-// $conn = new mysqli($DB_SERVER,$DB_USER, $DB_PASS, $DB_NAME);
-// if ($conn->connect_error) {
-//     die ('conn error: '.$conn->connect_error);
-// }
-$conn = mysqli_connect($DB_SERVER,$DB_USER, $DB_PASS, $DB_NAME);
+require_once('bd.php');
+$conn = connect();
 
-//include_once('bd.php');
-//connect();
-    $query = "SELECT * FROM users";	
-	$result = mysqli_query($conn,$query);
-	$rowsCount = mysqli_num_rows($result); // количество полученных строк
-	//echo "Количество записей=".$rowsCount."<br/>";;
-	if($result){
-		while($row = mysqli_fetch_assoc($result)){
-			 $MyArray[]=$row;
-			 $name = $row["users_login"];
-			 $userpass = $row["users_password"];
-			// echo "Name: ".$name. "  Pass: ".$userpass."<br/>";
-		}
-		mysqli_free_result($result);
+  $query1 = "SELECT * FROM users WHERE users_id=1";
+  // WHERE users_id=1
+  //echo '$query1== '.$query1;
+  $result1 =mysqli_query($conn, $query1);
+  //$i=0;
+  if($result1){
+	  // echo mysqli_num_rows($result1);
+		while($row = mysqli_fetch_assoc($result1)){			
+			 $MyArray[]=$row;			 
+			 //$name = $row["users_login"];
+			 //$userpass = $row["users_password"];
+			 //echo "<br>Name: ".$name. "  Pass: ".$userpass."<br/>";
+			// echo '<br>$MyArray[]:  '.$MyArray[$i]["users_login"]."<br/>";			 	
+		}		
+		if (mysqli_num_rows($result1)>0)
+		{
+			// Возвращает JSON-представление данных
+			db_free_result($result1);
+			echo(json_encode(['records'=>($MyArray)]));
+
+		}else{
+			echo(json_encode(``));}			
 	}
 	else{
-		echo "Ошибка: " . mysqli_error($conn);
+		echo(json_encode(``));		//$MyArray= [];
+		//echo "Ошибка: " . mysqli_error($conn);
 	}
-	// Возвращает JSON-представление данных
-	echo(json_encode(['records'=>($MyArray)]));
+	
+	db_close($conn);
 
-	mysqli_close($conn);
+	
+
+
+	//mysqli_close($conn);
 /*
 	$response = array();
 	$query2 = "SELECT * FROM roles";
