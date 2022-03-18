@@ -1,4 +1,6 @@
 <?php
+echo '<br>'.str_replace(basename($_SERVER["REQUEST_URI"]), '', $_SERVER["REQUEST_URI"]);
+
 require_once __DIR__ . '/../config.php';
 $dir='../';
 //echo '$dir1='.$dir.'      ';

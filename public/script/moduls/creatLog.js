@@ -1,7 +1,7 @@
 import createMyElement from './creatElement.js';
 
 //! создаем форму регистрации
-const createFormCheck = () => {
+export const createFormCheck = () => {
   const formCheck = createMyElement('form', {
     className: 'form',
     id: 'check',
@@ -42,14 +42,19 @@ const createFormCheck = () => {
 };
 
 //! создаем форму авторизации
-const createFormAuth = () => {
+export const createFormAuth = () => {
   const formAuth = createMyElement('form', {
     className: 'form',
     id: 'auth',
   });
   const formH2 = createMyElement('h2', {
-    className: 'form_head',
+    className: 'form-head',
     textContent: 'Форма авторизации',
+  });
+  const divAnswer = createMyElement('div', {
+    className: 'form-answer',
+    id: 'form-answer',
+    textContent: '',
   });
   const inputLogin = createMyElement('input', {
     type: 'text',
@@ -58,13 +63,7 @@ const createFormAuth = () => {
     name: 'login',
     placeholder: 'Введите логин',
   });
-  const inputName = createMyElement('input', {
-    type: 'text',
-    className: 'form-control',
-    id: 'sname',
-    name: 'sname',
-    placeholder: 'Введите имя',
-  });
+
   const inputPass = createMyElement('input', {
     type: 'password',
     className: 'form-control',
@@ -96,11 +95,11 @@ const createFormAuth = () => {
     href: '#',
   });
   divDesc.append(linkCheck, linkRemember);
-  formAuth.append(formH2, inputLogin, inputName, inputPass, inputBtn, divDesc);
+  formAuth.append(formH2, divAnswer, inputLogin, inputPass, inputBtn, divDesc);
 
   console.log('formAuth: ', formAuth);
 
   return formAuth;
 };
 
-export default createFormAuth;
+//export default createFormAuth;
